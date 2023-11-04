@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Logotype } from "../Logotype";
 import { NavigationButton } from "../NavigationButton";
-import { ArrowUpRight } from "../../icons/ArrowUpRight";
 import { SignInButton } from "../SignInButton";
 import { UserDropdown } from "./UserDropdown";
-import { DevActionsDropdown } from "./DevActionsDropdown";
-import { NotificationWidget } from "../NotificationWidget";
-import { StarButton } from "../StarButton";
+import { useLocation } from "react-router-dom";
 
 const StyledNavigation = styled.div`
   position: sticky;
@@ -16,10 +13,14 @@ const StyledNavigation = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-  background-color: var(--slate-dark-1);
-  // background: transparent;
+  background: ${(props) =>
+    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      ? "transparent"
+      : "white"};
   z-index: 1000;
   padding: 12px 0;
+  margin-bottom: ${(props) =>
+    props.currentPage === "Home" && !props.scrolledYet ? "-100px" : "0"};
 
   .user-section {
     margin-left: auto;
@@ -31,14 +32,21 @@ const StyledNavigation = styled.div`
   .container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 6px 0;
 
     .navigation-section {
-      margin-left: 50px;
+      flex: 1;
       display: flex;
-      color: #fff;
+      align-items: center;
+      justify-content: center;
       gap: 0.7rem;
-      // margin-top: 10px;
       a {
+        color: ${(props) =>
+          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+            ? "#fff"
+            : "#000"};
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -70,9 +78,43 @@ const StyledNavigation = styled.div`
   }
 `;
 
+// change the background to white when the user scrolls down
+
 export function DesktopNavigation(props) {
+  const [currentPage, setCurrentPage] = useState("");
+  const location = useLocation();
+  const [scroll, setScroll] = useState(false);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 0) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
+  useEffect(() => window.addEventListener("scroll", handleScroll));
+
+  useEffect(() => {
+    getCurrentPage();
+    console.log("route: ", location.pathname);
+  }, [location.pathname]);
+
+  const getCurrentPage = () => {
+    switch (location.pathname) {
+      case "/":
+        return setCurrentPage("Home");
+      case `/${props.widgets.profilePage}`:
+        return setCurrentPage("Profile");
+      case "/edit":
+        return setCurrentPage("Create");
+      default:
+        return setCurrentPage("");
+    }
+  };
   return (
-    <StyledNavigation>
+    <StyledNavigation {...props} currentPage={currentPage} scrolledYet={scroll}>
       <div className="container">
         <Link
           to="/"
@@ -81,29 +123,44 @@ export function DesktopNavigation(props) {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <Logotype />
+          <Logotype
+            color={
+              currentPage.toLowerCase() === "home" && !scroll ? "#fff" : "#000"
+            }
+          />
         </Link>
         <div className="navigation-section">
-          <NavigationButton route="/explore">NFTs</NavigationButton>
-          <NavigationButton route="/communities">Communities</NavigationButton>
-          <NavigationButton route="/feed">Feed</NavigationButton>
-          <NavigationButton href={props.documentationHref} disabled>
-            Funding
-            <ArrowUpRight />
+          <NavigationButton route="/agwaze.near/widget/CPlanet.Explore.index">
+            NFTs
           </NavigationButton>
+          <NavigationButton route="/agwaze.near/widget/CPlanet.DAO.Explore">
+            Communities
+          </NavigationButton>
+          <NavigationButton route="/jgodwill.near/widget/CPlanet.MainPage.Social">
+            Feed
+          </NavigationButton>
+          <NavigationButton disabled>Funding</NavigationButton>
         </div>
         <div className="user-section">
           {/* <StarButton {...props} />
-          <DevActionsDropdown {...props} />
+          <DevActionsDropdown {...props} /> */}
           {!props.signedIn && (
-            <SignInButton onSignIn={() => props.requestSignIn()} />
-          )} */}
+            <SignInButton
+              currentPage={currentPage}
+              scrolledYet={scroll}
+              onSignIn={() => props.requestSignIn()}
+            />
+          )}
           {props.signedIn && (
             <>
               {/* <NotificationWidget
                 notificationButtonSrc={props.widgets.notificationButton}
               /> */}
-              <UserDropdown {...props} />
+              <UserDropdown
+                {...props}
+                currentPage={currentPage}
+                scrolledYet={scroll}
+              />
             </>
           )}
         </div>

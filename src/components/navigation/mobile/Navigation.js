@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MobileMenuButton } from "./MobileMenuButton";
-import { NearSocialLogo } from "../../icons/NearSocialLogo";
+import { CPlanetLogo, NearSocialLogo } from "../../icons/CPlanetLogo";
 import { NotificationWidget } from "../NotificationWidget";
-import { SignInButton } from "../SignInButton";
-import { StarButton } from "../StarButton";
 
 const StyledNavigation = styled.div`
   position: sticky;
@@ -13,22 +11,25 @@ const StyledNavigation = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-  background-color: var(--slate-dark-1);
+  background: ${(props) =>
+    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      ? "transparent"
+      : "white"};
   z-index: 1000;
   padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: ${(props) =>
+    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      ? "-100px"
+      : "0"};
 
   .logo-link {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: fit-content;
+    width: 200px;
   }
 
   .nav-notification-widget {
@@ -41,14 +42,23 @@ const StyledNavigation = styled.div`
     padding-right: 0;
   }
 `;
+//how to access props in styled components
 
 export function Navigation(props) {
+  const [scroll, setScroll] = useState(false);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 0) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
+  useEffect(() => window.addEventListener("scroll", handleScroll));
   return (
-    <StyledNavigation>
-      <MobileMenuButton
-        onClick={props.onClickShowMenu}
-        currentPage={props.currentPage}
-      />
+    <StyledNavigation currentPage={props.currentPage} scrolledYet={scroll}>
       <Link
         to="/"
         className="logo-link"
@@ -56,18 +66,19 @@ export function Navigation(props) {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
       >
-        <NearSocialLogo />
+        <CPlanetLogo
+          color={
+            props.currentPage.toLowerCase() === "home" && !scroll
+              ? "#fff"
+              : "#000"
+          }
+        />
       </Link>
-      {props.signedIn ? (
-        <div className="d-flex">
-          <StarButton {...props} />
-          <NotificationWidget
-            notificationButtonSrc={props.widgets.notificationButton}
-          />
-        </div>
-      ) : (
-        <SignInButton onSignIn={() => props.requestSignIn()} />
-      )}
+      <MobileMenuButton
+        onClick={props.onClickShowMenu}
+        currentPage={props.currentPage}
+        scrolledYet={scroll}
+      />
     </StyledNavigation>
   );
 }

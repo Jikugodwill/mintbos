@@ -7,7 +7,6 @@ const StyledNavigationButton = styled.div`
     color: #fff;
     font-size: 16px;
     padding: 10px;
-    border-radius: 8px;
     font-weight: var(--font-weight-bold);
     height: 40px;
     display: flex;
@@ -16,13 +15,12 @@ const StyledNavigationButton = styled.div`
 
     &:hover,
     &.active {
-      color: white;
       text-decoration: none;
-      // background-color: var(--slate-dark-6);
     }
   }
   &.disabled {
     opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
 

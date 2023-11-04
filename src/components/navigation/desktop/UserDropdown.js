@@ -17,17 +17,28 @@ const StyledDropdown = styled.div`
     font-weight: var(--font-weight-medium);
   }
   .dropdown-toggle {
+    max-height: 60px;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: left;
-    background-color: var(--slate-dark-5);
+    background-color: ${(props) =>
+      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        ? "#fff"
+        : "#000"};
     border-radius: 50px;
     outline: none;
-    border: 0;
+    border: 1px solid
+      ${(props) =>
+        props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+          ? "#000"
+          : "white"};
+    padding: 0.5rem;
+    width: fit-content;
 
     &:after {
       margin: 0 15px;
-      border-top-color: var(--slate-dark-11);
+      border-top-color: #000;
     }
 
     img {
@@ -46,7 +57,10 @@ const StyledDropdown = styled.div`
       }
 
       .profile-name {
-        color: var(--slate-dark-12);
+        color: ${(props) =>
+          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+            ? "#000"
+            : "white"};
       }
       .profile-username {
         color: var(--slate-dark-11);
@@ -55,7 +69,10 @@ const StyledDropdown = styled.div`
   }
 
   ul {
-    background-color: var(--slate-dark-5);
+    background-color: ${(props) =>
+      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        ? "#fff"
+        : "#000"};
     width: 100%;
 
     li {
@@ -107,7 +124,11 @@ export function UserDropdown(props) {
 
   return (
     <>
-      <StyledDropdown className="dropdown">
+      <StyledDropdown
+        className="dropdown"
+        currentPage={props.currentPage}
+        scrolledYet={props.scrolledYet}
+      >
         <button
           className="dropdown-toggle"
           type="button"
