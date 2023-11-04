@@ -94,10 +94,10 @@ export function DesktopNavigation(props) {
         </div>
         <div className="user-section">
           {/* <StarButton {...props} />
-          <DevActionsDropdown {...props} />
+          <DevActionsDropdown {...props} /> */}
           {!props.signedIn && (
             <SignInButton onSignIn={() => props.requestSignIn()} />
-          )} */}
+          )}
           {props.signedIn && (
             <>
               {/* <NotificationWidget

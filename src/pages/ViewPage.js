@@ -37,15 +37,15 @@ export default function ViewPage(props) {
     }, 1);
   }, [src, query, setWidgetSrc, viewSourceWidget]);
 
-  return showMenu ? (
-    <div className="container-xl">
+  return !showMenu ? (
+    <div className="container-fluid">
       <div className="row">
         <div
           className="position-relative"
-          style={{
-            "--body-top-padding": "24px",
-            paddingTop: "var(--body-top-padding)",
-          }}
+          // style={{
+          //   "--body-top-padding": "24px",
+          //   paddingTop: "var(--body-top-padding)",
+          // }}
         >
           <Widget key={src} src={src} props={widgetProps} />
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Close() {
+export function Close({ color }) {
   return (
     <svg
       width="24"
@@ -11,14 +11,14 @@ export function Close() {
     >
       <path
         d="M17.25 6.75L6.75 17.25"
-        stroke="#9BA1A6"
+        stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M6.75 6.75L17.25 17.25"
-        stroke="#9BA1A6"
+        stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

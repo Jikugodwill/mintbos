@@ -1,16 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Close } from "../../icons/Close";
-import { Home } from "../../icons/Home";
-import { Book } from "../../icons/Book";
-import { Code } from "../../icons/Code";
-import { LogOut } from "../../icons/LogOut";
-import { Fork } from "../../icons/Fork";
-import { UserCircle } from "../../icons/UserCircle";
-import { Widget } from "near-social-vm";
 import { NavigationButton } from "../NavigationButton";
 import { SignInButton } from "../SignInButton";
 import { Link } from "react-router-dom";
+import { CPlanetLogo } from "../../icons/CPlanetLogo";
+import { UserDropdown } from "../desktop/UserDropdown";
 
 const StyledMenu = styled.div`
   position: fixed;
@@ -34,8 +29,8 @@ const StyledMenu = styled.div`
   }
 
   .left-side {
-    flex: 80;
-    background-color: var(--slate-dark-1);
+    flex: 1;
+    background-color: #fff;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -76,61 +71,61 @@ const StyledMenu = styled.div`
     }
   }
 
-  .top-links,
-  .bottom-links {
-    a,
-    button {
-      justify-content: flex-start;
-      padding: 28px 0;
+  .top-links {
+    margin-top: 40px;
+    li:last-child {
       display: flex;
-      align-items: center;
-      color: var(--slate-dark-11);
-      font-weight: var(--font-weight-bold);
-
-      svg {
-        margin-right: 12px;
+      justify-content: center;
+      text-align: center;
+      margin: 10px auto;
+      width: 100%;
+      .signin {
+        display: flex;
+        width: 155px;
+        height: 40px;
+        padding: 8px 15px 8px 14px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 32px;
+        background: #000;
+        border: 1px solid #000;
+        color: #fff;
+        &:hover {
+          background: #fff;
+          color: #000;
+        }
       }
-
-      &.active,
+    }
+    a {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      border-bottom: 1px solid #b0b0b0;
+      padding: 2rem 1rem;
+      width: 100%;
+      color: #b0b0b0;
+      text-edge: cap;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      cursor: pointer;
       &:hover,
-      &:focus {
-        background-color: transparent;
-        color: white;
-        text-decoration: none;
-        svg {
-          path {
-            stroke: white;
-          }
+      &:focus,
+      &.active {
+        color: #000;
+        font-weight: 600;
+        background-color: #b0b0b0;
+        svg path {
+          stroke: #000;
+          stroke-width: 2;
         }
       }
     }
   }
 
-  .top-links {
-    margin-top: 40px;
-  }
-
   .bottom-links {
     margin-top: auto;
-
-    a,
-    button {
-      padding: 14px 0;
-    }
-  }
-
-  .log-out-button {
-    background: none;
-    border: none;
-    color: var(--slate-dark-11);
-    font-weight: var(--font-weight-bold);
-    padding: 28px 0;
-
-    svg {
-      path {
-        stroke: #9ba1a6;
-      }
-    }
   }
 
   .close-button {
@@ -146,10 +141,21 @@ const StyledMenu = styled.div`
     }
   }
 
-  .right-side {
-    flex: 20;
-    opacity: 0.8;
-    background-color: var(--slate-dark-1);
+  .user-section {
+    display: flex;
+    align-items: center;
+
+    .profile-name {
+      margin-top: 0px;
+    }
+
+    .nav-create-btn {
+      margin-left: 10px;
+    }
+
+    .nav-sign-in-btn {
+      margin-left: 10px;
+    }
   }
 `;
 
@@ -157,100 +163,57 @@ export function Menu(props) {
   return (
     <StyledMenu className={props.showMenu ? "show" : ""}>
       <div className="left-side">
-        {props.signedIn ? (
+        <div className="top-bar">
           <Link
-            to={`/${props.widgets.profilePage}?accountId=${props.signedAccountId}`}
-            className="profile-link"
-          >
-            <Widget
-              src={props.widgets.profileImage}
-              props={{
-                accountId: props.signedAccountId,
-                className: "d-inline-block",
-                style: { width: "56px", height: "56px" },
-              }}
-            />
-            {props.widgets.profileName && (
-              <div className="profile-name">
-                <Widget src={props.widgets.profileName} />
-              </div>
-            )}
-            <div className="profile-username">{props.signedAccountId}</div>
-          </Link>
-        ) : (
-          <SignInButton
-            onSignIn={() => {
-              props.onCloseMenu();
-              props.requestSignIn();
+            to="/"
+            className="logo-link"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-          />
-        )}
+          >
+            <CPlanetLogo color="#000" />
+          </Link>
+          <button className="close-button" onClick={props.onCloseMenu}>
+            <Close color="#000" />
+          </button>
+        </div>
         <ul className="top-links">
           <li>
-            <NavigationButton route="/">
-              <Home />
-              Home
+            <NavigationButton route="/agwaze.near/widget/CPlanet.Explore.index">
+              NFTs
             </NavigationButton>
           </li>
           <li>
-            <NavigationButton
-              disabled={!props.signedIn}
-              route={`/${props.widgets.profilePage}?accountId=${props.signedAccountId}`}
-            >
-              <UserCircle />
-              Profile
+            <NavigationButton route="/agwaze.near/widget/CPlanet.DAO.Explore">
+              Communities
             </NavigationButton>
           </li>
           <li>
-            <NavigationButton route="/edit">
-              <Code />
-              Editor
+            <NavigationButton route="/jgodwill.near/widget/CPlanet.MainPage.Social">
+              Feed
             </NavigationButton>
           </li>
           <li>
-            <NavigationButton href={props.documentationHref}>
-              <Book />
-              Documentation
-            </NavigationButton>
+            <NavigationButton disabled>Funding</NavigationButton>
+          </li>
+          <li>
+            <div className="user-section">
+              {props.signedIn ? (
+                <UserDropdown {...props} />
+              ) : (
+                <SignInButton
+                  onSignIn={() => {
+                    props.onCloseMenu();
+                    props.requestSignIn();
+                  }}
+                  className="signin"
+                />
+              )}
+            </div>
           </li>
         </ul>
-        <ul className="bottom-links">
-          {props.widgetSrc?.edit && (
-            <li>
-              <Link to={`/edit/${props.widgetSrc?.edit}`}>
-                <Fork />
-                {props.widgetSrc.edit.startsWith(
-                  `${props.signedAccountId}/widget/`
-                )
-                  ? "Edit widget"
-                  : "Fork widget"}
-              </Link>
-            </li>
-          )}
-          {props.widgetSrc?.view && (
-            <li>
-              <Link
-                to={`/${props.widgets.viewSource}?src=${props.widgetSrc?.view}`}
-              >
-                <Code />
-                View source
-              </Link>
-            </li>
-          )}
-          {props.signedIn && (
-            <li>
-              <button onClick={() => props.logOut()} className="log-out-button">
-                <LogOut />
-                Sign Out
-              </button>
-            </li>
-          )}
-        </ul>
-        <button className="close-button" onClick={props.onCloseMenu}>
-          <Close />
-        </button>
+        <ul className="bottom-links"></ul>
       </div>
-      <div className="right-side" onClick={props.onCloseMenu} />
     </StyledMenu>
   );
 }
