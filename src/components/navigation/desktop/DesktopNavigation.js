@@ -21,6 +21,9 @@ const StyledNavigation = styled.div`
   padding: 12px 0;
   margin-bottom: ${(props) =>
     props.currentPage === "Home" && !props.scrolledYet ? "-100px" : "0"};
+  border-bottom: 1px solid
+    ${(props) =>
+      props.currentPage === "Home" && !props.scrolledYet ? "#fff" : "#000"};
 
   .user-section {
     margin-left: auto;

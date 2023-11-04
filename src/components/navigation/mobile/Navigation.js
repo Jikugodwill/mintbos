@@ -24,6 +24,9 @@ const StyledNavigation = styled.div`
     props.currentPage.toLowerCase() === "home" && !props.scrolledYet
       ? "-100px"
       : "0"};
+  border-bottom: 1px solid
+    ${(props) =>
+      props.currentPage === "Home" && !props.scrolledYet ? "#fff" : "#000"};
 
   .logo-link {
     display: flex;
