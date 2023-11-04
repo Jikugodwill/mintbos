@@ -90,12 +90,21 @@ const StyledDropdown = styled.div`
       :hover,
       :focus {
         text-decoration: none;
-        background-color: var(--slate-dark-1);
-        color: white;
+        background-color: ${(props) =>
+          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+            ? "#000"
+            : "white"};
+        color: ${(props) =>
+          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+            ? "#fff"
+            : "#000"};
 
         svg {
           path {
-            stroke: white;
+            stroke: ${(props) =>
+              props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+                ? "#fff"
+                : "#000"};
           }
         }
       }
@@ -104,7 +113,10 @@ const StyledDropdown = styled.div`
         margin-right: 7px;
         min-width: 24px;
         path {
-          stroke: var(--slate-dark-9);
+          stroke: ${(props) =>
+            props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+              ? "#000"
+              : "white"};
         }
       }
     }
