@@ -22,10 +22,17 @@ const StyledDropdown = styled.div`
     align-items: center;
     justify-content: center;
     text-align: left;
-    background-color: #000;
+    background-color: ${(props) =>
+      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        ? "#fff"
+        : "#000"};
     border-radius: 50px;
     outline: none;
-    border: 1px solid #000;
+    border: 1px solid
+      ${(props) =>
+        props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+          ? "#000"
+          : "white"};
     padding: 0.5rem;
     width: fit-content;
 
@@ -50,7 +57,10 @@ const StyledDropdown = styled.div`
       }
 
       .profile-name {
-        color: var(--slate-dark-12);
+        color: ${(props) =>
+          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+            ? "#000"
+            : "white"};
       }
       .profile-username {
         color: var(--slate-dark-11);
@@ -59,7 +69,10 @@ const StyledDropdown = styled.div`
   }
 
   ul {
-    background-color: #000;
+    background-color: ${(props) =>
+      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        ? "#fff"
+        : "#000"};
     width: 100%;
 
     li {
@@ -111,7 +124,11 @@ export function UserDropdown(props) {
 
   return (
     <>
-      <StyledDropdown className="dropdown">
+      <StyledDropdown
+        className="dropdown"
+        currentPage={props.currentPage}
+        scrolledYet={props.scrolledYet}
+      >
         <button
           className="dropdown-toggle"
           type="button"

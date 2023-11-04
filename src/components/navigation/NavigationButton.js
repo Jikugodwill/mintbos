@@ -20,9 +20,9 @@ const StyledNavigationButton = styled.div`
   }
   &.disabled {
     opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
-
 
 export function NavigationButton(props) {
   return (

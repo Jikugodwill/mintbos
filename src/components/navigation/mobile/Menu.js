@@ -199,7 +199,11 @@ export function Menu(props) {
           <li>
             <div className="user-section">
               {props.signedIn ? (
-                <UserDropdown {...props} />
+                <UserDropdown
+                  {...props}
+                  currentPage={"/nothere"}
+                  scrolledYet={false}
+                />
               ) : (
                 <SignInButton
                   onSignIn={() => {

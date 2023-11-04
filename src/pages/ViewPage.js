@@ -38,7 +38,7 @@ export default function ViewPage(props) {
   }, [src, query, setWidgetSrc, viewSourceWidget]);
 
   return !showMenu ? (
-    <div className="container-fluid">
+    <div>
       <div className="row">
         <div
           className="position-relative"

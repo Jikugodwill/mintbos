@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MobileMenuButton } from "./MobileMenuButton";
@@ -12,7 +12,7 @@ const StyledNavigation = styled.div`
   right: 0;
   width: 100%;
   background: ${(props) =>
-    props && props.currentPage.toLowerCase() === "home"
+    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
       ? "transparent"
       : "white"};
   z-index: 1000;
@@ -21,7 +21,9 @@ const StyledNavigation = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: ${(props) =>
-    props && props.currentPage.toLowerCase() === "home" ? "-100px" : "0"};
+    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      ? "-100px"
+      : "0"};
 
   .logo-link {
     display: flex;
@@ -43,8 +45,20 @@ const StyledNavigation = styled.div`
 //how to access props in styled components
 
 export function Navigation(props) {
+  const [scroll, setScroll] = useState(false);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 0) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
+  useEffect(() => window.addEventListener("scroll", handleScroll));
   return (
-    <StyledNavigation currentPage={props.currentPage}>
+    <StyledNavigation currentPage={props.currentPage} scrolledYet={scroll}>
       <Link
         to="/"
         className="logo-link"
@@ -53,12 +67,17 @@ export function Navigation(props) {
         }}
       >
         <CPlanetLogo
-          color={props.currentPage.toLowerCase() === "home" ? "#fff" : "#000"}
+          color={
+            props.currentPage.toLowerCase() === "home" && !scroll
+              ? "#fff"
+              : "#000"
+          }
         />
       </Link>
       <MobileMenuButton
         onClick={props.onClickShowMenu}
         currentPage={props.currentPage}
+        scrolledYet={scroll}
       />
     </StyledNavigation>
   );
