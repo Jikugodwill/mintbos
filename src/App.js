@@ -26,6 +26,7 @@ import {
   useNear,
   utils,
   EthersProviderContext,
+  Widget,
 } from "near-social-vm";
 import Big from "big.js";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
@@ -181,6 +182,7 @@ function App(props) {
               <ViewPage {...passProps} />
             </Route>
           </Switch>
+          <Widget src="agwaze.near/widget/CPlanet.Footer.index" />
         </Router>
       </EthersProviderContext.Provider>
     </div>
