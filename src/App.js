@@ -178,7 +178,7 @@ function App(props) {
               <ViewPage {...passProps} />
             </Route>
           </Switch>
-          {/* <Widget src="agwaze.near/widget/CPlanet.Footer.index" /> */}
+          <Widget src="agwaze.near/widget/CPlanet.Footer.index" />
         </Router>
       </EthersProviderContext.Provider>
     </div>
