@@ -47,11 +47,15 @@ export default function ViewPage(props) {
           //   paddingTop: "var(--body-top-padding)",
           // }}
         >
-          <Widget key={src} src={src} props={widgetProps} />
+          <Widget
+            key={src}
+            src={src}
+            props={{ ...widgetProps, isGateway: true }}
+          />
         </div>
       </div>
     </div>
   ) : (
-    <Widget key={src} src={src} props={widgetProps} />
+    <Widget key={src} src={src} props={{ ...widgetProps, isGateway: true }} />
   );
 }

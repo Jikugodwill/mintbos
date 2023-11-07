@@ -29,10 +29,10 @@ import {
   Widget,
 } from "near-social-vm";
 import Big from "big.js";
-import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { NetworkId, Widgets } from "./data/widgets";
 import { useEthersProviderContext } from "./data/web3";
 import SignInPage from "./pages/SignInPage";
+import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 
 export const refreshAllowanceObj = {};
 const documentationHref = "https://social.near-docs.io/";

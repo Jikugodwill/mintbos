@@ -194,7 +194,9 @@ export function Menu(props) {
             </NavigationButton>
           </li>
           <li>
-            <NavigationButton disabled>Funding</NavigationButton>
+            <NavigationButton href="https://gov.near.org/t/docs-the-creatives-constellation-charter/32878">
+              Funding
+            </NavigationButton>
           </li>
           <li>
             <div className="user-section">

@@ -23,7 +23,7 @@ export default function EmbedPage(props) {
 
   return (
     <div className="d-inline-block position-relative overflow-hidden">
-      <Widget key={src} src={src} props={widgetProps} />{" "}
+      <Widget key={src} src={src} props={{ isGateway: true, ...widgetProps }} />{" "}
     </div>
   );
 }
