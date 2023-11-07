@@ -142,7 +142,9 @@ export function DesktopNavigation(props) {
           <NavigationButton route="/jgodwill.near/widget/CPlanet.MainPage.Social">
             Feed
           </NavigationButton>
-          <NavigationButton disabled>Funding</NavigationButton>
+          <NavigationButton href="https://gov.near.org/t/docs-the-creatives-constellation-charter/32878">
+            Funding
+          </NavigationButton>
         </div>
         <div className="user-section">
           {/* <StarButton {...props} />
