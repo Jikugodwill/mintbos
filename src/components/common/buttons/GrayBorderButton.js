@@ -10,12 +10,28 @@ const StyledButton = styled(Button)`
   justify-content: center;
   align-items: center;
   border-radius: 32px;
-  background: #000;
-  border: 1px solid #000;
-  color: #fff;
+  background: ${(props) =>
+    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      ? "transparent"
+      : "#fff"};
+  border: 1px solid
+    ${(props) =>
+      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        ? "#fff"
+        : "#000"};
+  color: ${(props) =>
+    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      ? "#fff"
+      : "#000"};
   &:hover {
-    background: #fff;
-    color: #000;
+    background: ${(props) =>
+      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        ? "#fff"
+        : "#000"};
+    color: ${(props) =>
+      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        ? "#000"
+        : "#fff"};
   }
 `;
 
