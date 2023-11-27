@@ -133,13 +133,13 @@ export function DesktopNavigation(props) {
           />
         </Link>
         <div className="navigation-section">
-          <NavigationButton route="/agwaze.near/widget/CPlanet.Explore.index">
+          <NavigationButton route="/bos.genadrop.near/widget/CPlanet.NFTExplore.Index">
             NFTs
           </NavigationButton>
-          <NavigationButton route="/agwaze.near/widget/CPlanet.DAO.Explore">
+          <NavigationButton route="/bos.genadrop.near/widget/CPlanet.DAO.Explore">
             Communities
           </NavigationButton>
-          <NavigationButton route="/jgodwill.near/widget/CPlanet.MainPage.Social">
+          <NavigationButton route="/bos.genadrop.near/widget/CPlanet.MainPage.Social">
             Feed
           </NavigationButton>
           <NavigationButton href="https://gov.near.org/t/docs-the-creatives-constellation-charter/32878">
