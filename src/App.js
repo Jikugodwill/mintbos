@@ -182,7 +182,7 @@ function App(props) {
               <ViewPage {...passProps} />
             </Route>
           </Switch>
-          <Widget src="agwaze.near/widget/CPlanet.Footer.index" />
+          <Widget src="bos.genadrop.near/widget/CPlanet.Footer.Index" />
         </Router>
       </EthersProviderContext.Provider>
     </div>
