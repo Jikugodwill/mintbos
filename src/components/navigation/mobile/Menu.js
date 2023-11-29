@@ -179,17 +179,17 @@ export function Menu(props) {
         </div>
         <ul className="top-links">
           <li>
-            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.NFTExplore.Index">
+            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.index?tab=explore">
               NFTs
             </NavigationButton>
           </li>
           <li>
-            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.DAO.Explore">
+            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.index?tab=community">
               Communities
             </NavigationButton>
           </li>``
           <li>
-            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.MainPage.Social">
+            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.index?tab=feed">
               Feed
             </NavigationButton>
           </li>
