@@ -145,6 +145,9 @@ export function DesktopNavigation(props) {
           <NavigationButton href="https://gov.near.org/t/docs-the-creatives-constellation-charter/32878">
             Funding
           </NavigationButton>
+          <NavigationButton route="/bos.genadrop.near/widget/CPlanet.DropsFund.Contest.Index">
+            Drop Funds
+          </NavigationButton>
         </div>
         <div className="user-section">
           {/* <StarButton {...props} />

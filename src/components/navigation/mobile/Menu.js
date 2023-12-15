@@ -188,7 +188,7 @@ export function Menu(props) {
               Communities
             </NavigationButton>
           </li>
-          ``
+
           <li>
             <NavigationButton route="/bos.genadrop.near/widget/CPlanet.MainPage.Social">
               Feed
@@ -197,6 +197,11 @@ export function Menu(props) {
           <li>
             <NavigationButton href="https://gov.near.org/t/docs-the-creatives-constellation-charter/32878">
               Funding
+            </NavigationButton>
+          </li>
+          <li>
+            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.DropFund.Index">
+              Drop Funds
             </NavigationButton>
           </li>
           <li>
