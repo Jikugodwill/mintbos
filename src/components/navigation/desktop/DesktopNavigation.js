@@ -146,7 +146,7 @@ export function DesktopNavigation(props) {
             Funding
           </NavigationButton>
           <NavigationButton route="/bos.genadrop.near/widget/CPlanet.DropsFund.Contest.Index">
-            Drop Funds
+            Contests
           </NavigationButton>
         </div>
         <div className="user-section">
