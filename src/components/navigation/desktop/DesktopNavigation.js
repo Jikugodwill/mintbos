@@ -14,7 +14,7 @@ const StyledNavigation = styled.div`
   right: 0;
   width: 100%;
   background: ${(props) =>
-    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+    props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
       ? "transparent"
       : "white"};
   z-index: 1000;
@@ -47,7 +47,7 @@ const StyledNavigation = styled.div`
       gap: 0.7rem;
       a {
         color: ${(props) =>
-          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+          props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
             ? "#fff"
             : "#000"};
         font-size: 16px;

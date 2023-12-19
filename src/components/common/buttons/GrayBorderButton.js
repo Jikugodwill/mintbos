@@ -11,25 +11,25 @@ const StyledButton = styled(Button)`
   align-items: center;
   border-radius: 32px;
   background: ${(props) =>
-    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+    props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
       ? "transparent"
       : "#fff"};
   border: 1px solid
     ${(props) =>
-      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
         ? "#fff"
         : "#000"};
   color: ${(props) =>
-    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+    props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
       ? "#fff"
       : "#000"};
   &:hover {
     background: ${(props) =>
-      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
         ? "#fff"
         : "#000"};
     color: ${(props) =>
-      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
         ? "#000"
         : "#fff"};
   }

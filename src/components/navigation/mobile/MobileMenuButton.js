@@ -20,7 +20,7 @@ const StyledMobileMenuButton = styled.button`
 
     div {
       background-color: ${(props) =>
-        props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
           ? "#fff"
           : "#000"};
       height: 2px;

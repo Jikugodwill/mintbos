@@ -23,14 +23,14 @@ const StyledDropdown = styled.div`
     justify-content: center;
     text-align: left;
     background-color: ${(props) =>
-      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
         ? "#fff"
         : "#000"};
     border-radius: 50px;
     outline: none;
     border: 1px solid
       ${(props) =>
-        props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+        props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
           ? "#000"
           : "white"};
     padding: 0.5rem;
@@ -58,7 +58,7 @@ const StyledDropdown = styled.div`
 
       .profile-name {
         color: ${(props) =>
-          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+          props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
             ? "#000"
             : "white"};
       }
@@ -70,7 +70,7 @@ const StyledDropdown = styled.div`
 
   ul {
     background-color: ${(props) =>
-      props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+      props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
         ? "#fff"
         : "#000"};
     width: 100%;
@@ -91,18 +91,18 @@ const StyledDropdown = styled.div`
       :focus {
         text-decoration: none;
         background-color: ${(props) =>
-          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+          props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
             ? "#000"
             : "white"};
         color: ${(props) =>
-          props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+          props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
             ? "#fff"
             : "#000"};
 
         svg {
           path {
             stroke: ${(props) =>
-              props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+              props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
                 ? "#fff"
                 : "#000"};
           }
@@ -114,7 +114,7 @@ const StyledDropdown = styled.div`
         min-width: 24px;
         path {
           stroke: ${(props) =>
-            props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+            props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
               ? "#000"
               : "white"};
         }
