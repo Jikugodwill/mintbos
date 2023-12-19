@@ -200,7 +200,7 @@ export function Menu(props) {
             </NavigationButton>
           </li>
           <li>
-            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.DropFund.Index">
+            <NavigationButton route="/bos.genadrop.near/widget/CPlanet.DropsFund.Index">
               Contests
             </NavigationButton>
           </li>
