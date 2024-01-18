@@ -12,7 +12,7 @@ const StyledNavigation = styled.div`
   right: 0;
   width: 100%;
   background: ${(props) =>
-    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+    props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
       ? "transparent"
       : "white"};
   z-index: 1000;
@@ -21,7 +21,7 @@ const StyledNavigation = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: ${(props) =>
-    props.currentPage.toLowerCase() === "home" && !props.scrolledYet
+    props?.currentPage?.toLowerCase() === "home" && !props.scrolledYet
       ? "-100px"
       : "0"};
   border-bottom: 1px solid
@@ -71,7 +71,7 @@ export function Navigation(props) {
       >
         <CPlanetLogo
           color={
-            props.currentPage.toLowerCase() === "home" && !scroll
+            props?.currentPage?.toLowerCase() === "home" && !scroll
               ? "#fff"
               : "#000"
           }
