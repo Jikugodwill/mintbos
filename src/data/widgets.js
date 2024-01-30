@@ -26,7 +26,7 @@ const MainnetWidgets = {
   widgetMetadata: "mob.near/widget/WidgetMetadata",
   profileImage: "mob.near/widget/ProfileImage",
   notificationButton: "mob.near/widget/NotificationButton",
-  profilePage: "bos.genadrop.near/widget/DropFlow.ArtistPage",
+  profilePage: "bos.genadrop.near/widget/DropFlow.ArtistPage.Index",
   profileName: "patrick.near/widget/ProfileName",
   editorComponentSearch: "mob.near/widget/Editor.ComponentSearch",
   profileInlineBlock: "mob.near/widget/Profile.InlineBlock",
