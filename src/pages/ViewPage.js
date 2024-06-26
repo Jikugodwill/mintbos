@@ -42,10 +42,10 @@ export default function ViewPage(props) {
       <div className="row">
         <div
           className="position-relative"
-          // style={{
-          //   "--body-top-padding": "24px",
-          //   paddingTop: "var(--body-top-padding)",
-          // }}
+          style={{
+            "--body-top-padding": "24px",
+            // paddingTop: "var(--body-top-padding)",
+          }}
         >
           <Widget
             key={src}
