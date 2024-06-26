@@ -20,7 +20,7 @@ const TestnetWidgets = {
 
 const MainnetWidgets = {
   image: "mob.near/widget/Image",
-  default: "bos.genadrop.near/widget/Mintbase.Mini.Index",
+  default: "bos.genadrop.near/widget/Mintbase.App.Index",
   viewSource: "mob.near/widget/WidgetSource",
   widgetMetadataEditor: "mob.near/widget/WidgetMetadataEditor",
   widgetMetadata: "mob.near/widget/WidgetMetadata",
