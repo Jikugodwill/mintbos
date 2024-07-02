@@ -10,6 +10,7 @@ import { Pretend } from "../../icons/Pretend";
 import { StopPretending } from "../../icons/StopPretending";
 import { QR } from "../../icons/QR";
 import MobileQRModal from "../MobileQRModal";
+import ActAsDao from "../ActasDAO/ActasDAO";
 
 const StyledDropdown = styled.div`
   button,
@@ -223,6 +224,9 @@ export function UserDropdown(props) {
               <QR />
               Mobile Sign-in QR
             </button>
+          </li>
+          <li>
+            <ActAsDao />
           </li>
           <li>
             <button
