@@ -6,6 +6,8 @@ import { NavigationButton } from "../NavigationButton";
 import { SignInButton } from "../SignInButton";
 import { UserDropdown } from "./UserDropdown";
 import { useLocation } from "react-router-dom";
+import ActAsDao from "../ActasDAO/ActasDAO";
+import { useAccount } from "near-social-vm";
 
 const StyledNavigation = styled.div`
   position: sticky;
@@ -83,11 +85,13 @@ const StyledNavigation = styled.div`
 
 // change the background to white when the user scrolls down
 
+
 export function DesktopNavigation(props) {
   const [currentPage, setCurrentPage] = useState("");
   const location = useLocation();
   const [scroll, setScroll] = useState(false);
-
+  // console.log("it's meee!", account.accountId);
+  
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
     if (currentScrollY > 0) {
@@ -116,6 +120,8 @@ export function DesktopNavigation(props) {
         return setCurrentPage("");
     }
   };
+
+  const account = useAccount();
   return (
     <StyledNavigation {...props} currentPage={currentPage} scrolledYet={scroll}>
       <div className="container">
@@ -150,6 +156,7 @@ export function DesktopNavigation(props) {
           </NavigationButton>
         </div>
         <div className="user-section">
+          <ActAsDao accountId={account.accountId} />
           {/* <StarButton {...props} />
           <DevActionsDropdown {...props} /> */}
           {!props.signedIn && (

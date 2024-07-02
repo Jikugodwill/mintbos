@@ -30,7 +30,7 @@ export const checkIfDaoAddress = (addresss) => {
   );
 };
 
-export const valdiateUserInDao = async (daoAddress, accountId) => {
+export const validateUserInDao = async (daoAddress, accountId) => {
   const isValidAddress = checkIfDaoAddress(daoAddress);
 
   if (!isValidAddress) return "Please enter a valid DAO address.";

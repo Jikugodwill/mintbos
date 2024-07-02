@@ -226,7 +226,7 @@ export function UserDropdown(props) {
             </button>
           </li>
           <li>
-            <ActAsDao />
+            {/* <ActAsDao /> */}
           </li>
           <li>
             <button

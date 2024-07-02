@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { _address } from "./lib/_address";
+import { validateUserInDao } from "./lib/daoHelpers";
 
 const LOCALSTORAGE_KEY = "actAsDao_data";
 
@@ -23,7 +24,7 @@ const setLocalStorageData = (data) => {
   }
 };
 
-const ActAsDao = () => {
+const ActAsDao = ({ accountId }) => {
   const [actAsDao, setActAsDao] = useState(() => {
     const savedData = getLocalStorageData();
     return (
@@ -35,6 +36,9 @@ const ActAsDao = () => {
   });
 
   const [inputActive, setInputActive] = useState(false);
+  const [daoAddress, setDaoAddress] = useState("");
+  const [daoError, setDaoError] = useState("");
+  const [addresses, setAddresses] = useState([]);
 
   useEffect(() => {
     setLocalStorageData(actAsDao);
@@ -45,6 +49,42 @@ const ActAsDao = () => {
     if (newToggle && !actAsDao.address) {
       setInputActive(true);
     }
+  };
+
+  const markDaoAsDefault = (address) => {
+    // Implement marking DAO as default if needed
+  };
+
+  const addOrRemoveDaoAddress = (newAddresses) => {
+    setAddresses(newAddresses);
+  };
+
+  const handleAddDao = async (e) => {
+    e.preventDefault();
+    if (!daoAddress) {
+      setDaoError("Please enter a valid DAO address.");
+      return;
+    }
+
+    const check = await validateUserInDao(daoAddress, accountId); // assuming accountId is defined
+    if (check) {
+      setDaoError(check);
+      return;
+    }
+
+    if (addresses.includes(daoAddress)) {
+      setDaoError("DAO address already exists.");
+      return;
+    }
+
+    if (addresses.length === 0) {
+      markDaoAsDefault(daoAddress);
+    }
+
+    addOrRemoveDaoAddress([...addresses, daoAddress]);
+    setDaoAddress("");
+    setInputActive(false);
+    setDaoError("");
   };
 
   const setAddress = (newAddress) => {
@@ -65,7 +105,7 @@ const ActAsDao = () => {
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-info-circle"
+            className="bi bi-info-circle info-icon"
             viewBox="0 0 16 16"
           >
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -102,14 +142,17 @@ const ActAsDao = () => {
             </div>
           )}
           {inputActive || !actAsDao.address ? (
-            <input
-              type="text"
-              className="dao-input"
-              placeholder="Enter DAO address"
-              onKeyPress={(e) => {
-                if (e.key === "Enter") setAddress(e.target.value);
-              }}
-            />
+            <form onSubmit={handleAddDao}>
+              <input
+                type="text"
+                className="dao-input"
+                placeholder="Enter DAO address"
+                value={daoAddress}
+                onChange={(e) => setDaoAddress(e.target.value)}
+              />
+              {daoError && <p className="error">{daoError}</p>}
+              <button type="submit">Add DAO</button>
+            </form>
           ) : (
             <button className="change-dao" onClick={() => setInputActive(true)}>
               <svg
@@ -151,8 +194,8 @@ const ActAsDao = () => {
           /* align-items: center; */
           gap: 5px;
         }
-        .header svg{
-            width: 12px;
+        .header svg {
+          width: 12px;
         }
         .label {
           display: flex;
@@ -244,6 +287,11 @@ const ActAsDao = () => {
         }
         .change-dao svg {
           margin-right: 8px;
+        }
+        .error {
+          color: red;
+          font-size: 12px;
+          margin-top: 4px;
         }
       `}</style>
     </div>
